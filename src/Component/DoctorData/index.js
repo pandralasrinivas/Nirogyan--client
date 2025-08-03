@@ -1,4 +1,4 @@
-const DOCTORS_API_URL = 'http://localhost:5000/api/schedule'; // Change to your actual API endpoint
+const DOCTORS_API_URL = 'https://nirogyan-vus0.onrender.com/api/schedule'; // Change to your actual API endpoint
 
 const doctorsData = async () => {
   const response = await fetch(DOCTORS_API_URL);

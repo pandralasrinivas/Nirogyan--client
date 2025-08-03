@@ -105,3 +105,12 @@
   border: none;
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+  .hero-container{
+    margin-top: 100px;
+  }
+  .hero-image {
+    display: none; /* Hide hero image on mobile */
+  }
+}

@@ -348,8 +348,8 @@
 
 .form-control {
   width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid #e9ecef;
+  padding: 0.9rem 1rem;
+  border: 1px solid #cecece;
   border-radius: var(--border-radius);
   transition: var(--transition);
 }
@@ -382,6 +382,22 @@
 .btn-block {
   display: block;
   width: 100%;
+}
+
+.back-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 1rem;
+  transition: var(--transition);
+}
+
+.back-btn:hover {
+  background: var(--secondary-color);
 }
 
 @media (max-width: 992px) {
@@ -481,8 +497,8 @@
   .dashboard {
     padding: 0 2px;
   }
-  .header h1 {
-    font-size: 1.2rem;
+  .header{
+    display: none;
   }
   .doctor-name {
     font-size: 1rem;
@@ -492,12 +508,13 @@
     padding: 0.2rem 0.5rem;
   }
   .modal-content {
-    padding: 0.5rem;
-    max-width: 99vw;
+    padding: 1rem; /* Ensure enough padding inside the modal */
+    max-width: 95vw;
+    overflow: hidden; /* Prevent content from overflowing */
   }
   .form-control {
-    padding: 0.5rem 0.7rem;
-    font-size: 0.95rem;
+    width: 100%; /* Ensure inputs take full width of the container */
+    box-sizing: border-box; /* Include padding and border in width calculation */
   }
   .btn {
     padding: 0.5rem 1rem;

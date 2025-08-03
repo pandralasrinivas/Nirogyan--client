@@ -13,9 +13,11 @@ const HeroSection = () => {
             A Healthier Tomorrow Starts Today. Schedule Your Appointment — Your Wellness, Our Expertise.
           </p>
           <div className="hero-buttons">
-            <button className="hero-btn primary">
-              <FontAwesomeIcon icon={faCalendarAlt} />
+            <button className="hero-btn primary"                 onClick={() => window.location.href = `/availability/${1}`}
+ >
+              <FontAwesomeIcon icon={faCalendarAlt}  />
               Book An Appointment
+
             </button>
             <a href="tel:+1234567890" className="hero-btn secondary">
               <FontAwesomeIcon icon={faPhoneAlt} />

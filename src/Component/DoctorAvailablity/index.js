@@ -1,6 +1,6 @@
 // src/components/DoctorAvailability.js
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimes,
@@ -12,6 +12,7 @@ import './availability.css';
 
 const DoctorAvailability = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [doctor, setDoctor] = useState(null);
   const [activeStatusFilter, setActiveStatusFilter] = useState('all');
   const [availabilityData, setAvailabilityData] = useState([]);
@@ -77,14 +78,14 @@ const DoctorAvailability = () => {
     };
     try {
       // Book patient appointment
-      await fetch('http://localhost:5000/api/patients', {
+      await fetch('https://nirogyan-vus0.onrender.com/api/patients', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
       // Update doctor slot status to 'booked'
-      await fetch('http://localhost:5000/api/schedule', {
+      await fetch('https://nirogyan-vus0.onrender.com/api/schedule', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -120,6 +121,9 @@ const DoctorAvailability = () => {
   return (
     <div className="dashboard">
       <div className="header">
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          Back
+        </button>
         <h1>Doctor Availability</h1>
         <div className="user-profile">
           <img src={doctorData.avatar} alt="User" className="user-avatar" />

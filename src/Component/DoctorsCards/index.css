@@ -209,30 +209,19 @@
 
 @media (max-width: 480px) {
   .doctor-card-header {
+    display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center; /* Center align the content */
+    text-align: center; /* Center align text */
   }
-  
+
   .doctor-avatar {
-    margin-right: 0;
-    margin-bottom: 15px;
+    margin: 0 auto; /* Ensure the image is centered */
+    display: block;
   }
-  
+
   .doctor-info {
-    text-align: center;
-  }
-  
-  .doctor-rating {
-    justify-content: center;
-  }
-  
-  .doctor-stats {
-    flex-wrap: wrap;
-  }
-  
-  .stat-item {
-    flex: 0 0 50%;
-    margin-bottom: 15px;
+    margin-top: 1rem; /* Add spacing between the image and text */
   }
 }
 .doctor-list-page h2{
