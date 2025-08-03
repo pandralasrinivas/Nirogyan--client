@@ -240,7 +240,7 @@ const DoctorAvailability = () => {
                     onChange={handleFormChange}
                   >
                     <option value="">Select Time Slot</option>
-                    {["9-10am", "10am-11am", "11am-12pm", "12pm-1pm", "2pm-3pm", "4pm-5pm", "5pm-6pm", "6pm-8pm", "8pm-9pm"].map((slot) => {
+                    {["9am-10am", "10am-11am", "11am-12pm", "12pm-1pm", "2pm-3pm", "4pm-5pm", "5pm-6pm", "6pm-8pm", "8pm-9pm"].map((slot) => {
                       const slotObj =
                         availabilityData.length > 0
                           ? availabilityData[0].slots.find((s) => s.time === slot)
