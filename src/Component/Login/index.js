@@ -1,101 +1,106 @@
+// Login.jsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock, faEye, faEyeSlash, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import './loginform.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length === 0) {
-      // Handle login logic here
-      console.log('Logging in with:', { email, password, rememberMe });
-      // Redirect or show success message
-    } else {
-      setErrors(validationErrors);
-    }
+    setIsLoading(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      console.log('Login attempt with:', { email, password, rememberMe });
+      setIsLoading(false);
+      alert('Login functionality would be implemented here');
+    }, 1500);
   };
 
-  const validateForm = () => {
-    const errors = {};
-    if (!email.trim()) {
-      errors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = 'Email is invalid';
-    }
-    if (!password) {
-      errors.password = 'Password is required';
-    } else if (password.length < 6) {
-      errors.password = 'Password must be at least 6 characters';
-    }
-    return errors;
+  const handleSocialLogin = (platform) => {
+    alert(`Would normally authenticate with ${platform}`);
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-    
+    <div className="login-page">
+      <div className="floating-bubbles">
+        {[...Array(8)].map((_, i) => <div key={i} className="bubble" />)}
+      </div>
 
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className={`form-group ${errors.email ? 'error' : ''}`}>
-            <label htmlFor="email">Email</label>
-            <div className="input-with-icon">
-              <FontAwesomeIcon icon={faUser} className="input-icon" />
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-              />
+      <div className="login-container-with-image">
+        {/* Doctor Image Section */}
+        <div className="doctor-image-container">
+          <img src="https://res.cloudinary.com/damoxc2du/image/upload/v1754043000/Screenshot_2025-08-01_153757-removebg-preview_vhtwj1.png" alt="Doctor" className="doctor-image" />
+          <div className="image-overlay">
+            <h3>Welcome to HealthCare</h3>
+            <p>Your trusted medical partner</p>
+          </div>
+        </div>
+
+        {/* Login Form Section */}
+        <div className="login-container">
+          <div className="form-container">
+            <div className="logo">
+              <h2>Welcome Back</h2>
             </div>
-            {errors.email && <span className="error-message">{errors.email}</span>}
-          </div>
 
-          <div className={`form-group ${errors.password ? 'error' : ''}`}>
-            <label htmlFor="password">Password</label>
-            <div className="input-with-icon">
-              <FontAwesomeIcon icon={faLock} className="input-icon" />
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-              />
-            </div>
-            {errors.password && <span className="error-message">{errors.password}</span>}
-          </div>
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email Address"
+                  required
+                />
+              </div>
 
-          <div className="form-options">
-            <div className="remember-me">
-              <input
-                type="checkbox"
-                id="rememberMe"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-              />
-              <label htmlFor="rememberMe">Remember me</label>
-            </div>
-            <a href="/forgot-password" className="forgot-password">
-              Forgot password?
-            </a>
-          </div>
+              <div className="input-group">
+                <FontAwesomeIcon icon={faLock} className="input-icon" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  required
+                />
+                <span 
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                </span>
+              </div>
 
-          <button type="submit" className="login-button">
-            <FontAwesomeIcon icon={faSignInAlt} />
-            Login
-          </button>
+              <div className="options">
+                <div className="remember-me">
+                  <input
+                    type="checkbox"
+                    id="remember"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                  />
+                  <label htmlFor="remember">Remember me</label>
+                </div>
+                <div className="forgot-password">
+                  <a href="#">Forgot password?</a>
+                </div>
+              </div>
 
-          <div className="signup-link">
-            Don't have an account? <a href="/register">Sign up</a>
+              <button type="submit" className="login-btn" disabled={isLoading}>
+                {isLoading ? <FontAwesomeIcon icon={faSpinner} spin className="spinner" /> : 'Login'}
+              </button>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
