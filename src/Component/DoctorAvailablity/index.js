@@ -78,14 +78,14 @@ const DoctorAvailability = () => {
     };
     try {
       // Book patient appointment
-      await fetch('https://nirogyan-vus0.onrender.com/api/patients', {
+      await fetch('http://test-1-env.eba-5nk2qjhm.ap-south-1.elasticbeanstalk.com/api/patients', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
       // Update doctor slot status to 'booked'
-      await fetch('https://nirogyan-vus0.onrender.com/api/schedule', {
+      await fetch('http://test-1-env.eba-5nk2qjhm.ap-south-1.elasticbeanstalk.com/api/schedule', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
